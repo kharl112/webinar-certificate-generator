@@ -33,19 +33,20 @@ app.post("/generate", async (req, res) => {
       ref_no: node._rawData[5].replace(/\s/g, ""),
     }));
 
+    console.log(fixed_rows);
+
     const [participant] = fixed_rows.filter(
       ({ id_no, ref_no }) =>
         req.body.ref_no.replace(/\s/g, "") === ref_no &&
         id_no === req.body.id_no
     );
 
-    if (!participant)
-      return res
-        .status(404)
-        .send({
-          message:
-            "participant information was not found, please contact the organizing team if this is a mistake",
-        });
+    if (!participant) {
+      return res.status(404).send({
+        message:
+          "participant information was not found, please contact the organizing team if this is a mistake",
+      });
+    }
 
     const fileBuff = await generatePDF(participant.name);
     res.send(fileBuff);
