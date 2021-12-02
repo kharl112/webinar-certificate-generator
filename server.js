@@ -33,8 +33,6 @@ app.post("/generate", async (req, res) => {
       ref_no: node._rawData[5].replace(/\s/g, ""),
     }));
 
-    console.log(fixed_rows);
-
     const [participant] = fixed_rows.filter(
       ({ id_no, ref_no }) =>
         req.body.ref_no.replace(/\s/g, "") === ref_no &&
@@ -51,7 +49,6 @@ app.post("/generate", async (req, res) => {
     const fileBuff = await generatePDF(participant.name);
     res.send(fileBuff);
   } catch (error) {
-    console.log(error);
     res.status(500).send({ message: "something went wrong" });
   }
 });

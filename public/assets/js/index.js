@@ -31,7 +31,7 @@ form.addEventListener("submit", async (e) => {
   };
 
   button.disabled = true;
-  button.innerHTML = "Loading...";
+  button.innerHTML = "Downloading...";
   error_text.textContent = "";
 
   try {
