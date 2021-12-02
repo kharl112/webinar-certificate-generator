@@ -46,6 +46,7 @@ const generatePDF = async (text) => {
     const pdfBytes = await certificate.save();
     return toBuffer(pdfBytes);
   } catch (error) {
+    console.log(error);
     throw error;
   }
 };
