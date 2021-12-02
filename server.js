@@ -51,6 +51,7 @@ app.post("/generate", async (req, res) => {
     const fileBuff = await generatePDF(participant.name);
     res.send(fileBuff);
   } catch (error) {
+    console.log(error);
     res.status(500).send({ message: "something went wrong" });
   }
 });
